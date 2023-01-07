@@ -7,10 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 
 // components
 import { AppComponent } from './app.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LayoutComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

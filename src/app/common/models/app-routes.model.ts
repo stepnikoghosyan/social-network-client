@@ -5,4 +5,11 @@ export enum AppRoutes {
   // ForgotPassword = 'forgot-password',
   // ResetPassword = 'reset-password',
   // VerifyAccount = 'verify-account',
+  Home = 'home',
+  // Posts = 'posts',
+  // CreatePost = 'create',
+  // UpdatePost = 'edit',
+  // Profile = 'profile',
+  // Users = 'users',
+  NotFound = 'not-found',
 }
