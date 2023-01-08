@@ -1,1 +1,31 @@
-<p>login works!</p>
+<mat-card>
+  <mat-card-header class="justify-center">
+    <h1>Login</h1>
+  </mat-card-header>
+
+  <mat-card-content [formGroup]="form" class="flex dir-col">
+    <!-- Email -->
+  <!-- TODO: implement custom form control with name like TextField ? -->
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email"/>
+      <mat-error *appFormFieldErrors="let msg of form.controls['email']">{{ msg }}</mat-error>
+    </mat-form-field>
+
+    <!-- Password -->
+    <app-password-field formControlName="password"></app-password-field>
+
+  </mat-card-content>
+
+  <mat-card-actions class="justify-center">
+    <button (click)="onSubmit()" mat-raised-button color="primary">Sign In</button>
+  </mat-card-actions>
+
+  <mat-card-footer class="flex dir-col justify-center align-center">
+    <a routerLink="/auth/forgot-password">Forgot Password</a>
+
+    <div>
+      Not a member? <a routerLink="/auth/register">Register</a>
+    </div>
+  </mat-card-footer>
+</mat-card>
