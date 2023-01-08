@@ -5,6 +5,8 @@ import { Observable, switchMap, tap } from 'rxjs';
 
 // services
 import { BaseHttpService } from '@common/services/base-http.service';
+import { StorageService } from '@common/services/storage.service';
+import { UsersHttpService } from '@common/services/users.service';
 
 // dto
 // import { ResetPasswordDto } from '../models/dto/reset-password.dto';
@@ -26,9 +28,9 @@ export class AuthService extends BaseHttpService<any> {
   private readonly URL = 'auth';
 
   constructor(
-    // private readonly usersService: UsersService,
+    private readonly usersHttpService: UsersHttpService,
     // private readonly appStateService: AppStateService,
-    // private readonly storageService: StorageService,
+    private readonly storageService: StorageService,
     private readonly router: Router,
     http: HttpClient,
   ) {
@@ -36,17 +38,17 @@ export class AuthService extends BaseHttpService<any> {
   }
 
   public login(payload: LoginDto, rememberMe = true): Observable<any> { // TODO: change response type
-    // if (rememberMe) {
-    //   this.storageService.setStorageType('localStorage');
-    // } else {
-    //   this.storageService.setStorageType('sessionStorage');
-    // }
+    if (rememberMe) {
+      this.storageService.setStorageType('localStorage');
+    } else {
+      this.storageService.setStorageType('sessionStorage');
+    }
 
     return this.post<LoginDto, TokensResponse>(`${ this.URL }/login`, payload)
-      // .pipe(
-      //   tap((res) => this.storageService.setTokens(res)),
-      //   switchMap(() => this.usersService.getCurrentUser()),
-      // );
+      .pipe(
+        tap((res) => this.storageService.setTokens(res)),
+        switchMap(() => this.usersHttpService.getCurrentUser()),
+      );
   }
 
   public register(payload: RegisterDto): Observable<void> {
@@ -73,9 +75,9 @@ export class AuthService extends BaseHttpService<any> {
   //   return this.post<ResendActivationTokenDto, void>(`${ this.URL }/resend-activation-token`, data);
   // }
 
-  // public get isAuthenticated(): boolean {
-  //   return !!this.storageService.getAccessToken();
-  // }
+  public get isAuthenticated(): boolean {
+    return !!this.storageService.getAccessToken();
+  }
 
   public logout(): void {
     // this.storageService.clear();

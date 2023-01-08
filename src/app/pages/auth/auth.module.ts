@@ -16,6 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { FormFieldModule } from '@common/modules/form-field/form-field.module';
 import { PasswordFieldComponent } from '@common/components/password-field.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 // import { VerifyAccountComponent } from './components/verify-account/verify-account.component';
 // import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 // import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
@@ -41,6 +42,7 @@ import { PasswordFieldComponent } from '@common/components/password-field.compon
     MatIconModule,
     FormFieldModule,
     PasswordFieldComponent,
+    MatCheckboxModule,
   ],
 })
 export class AuthModule {

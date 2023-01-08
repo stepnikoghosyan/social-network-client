@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+// guards
+import { AuthGuard } from './guards/auth.guard';
+import { NotAuthGuard } from './guards/not-auth.guard';
+
 // components
 import { LayoutComponent } from './components/layout/layout.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -19,15 +23,15 @@ const routes: Routes = [
   },
   {
     path: AppRoutes.Auth,
-    // canLoad: [NotAuthGuard],
-    // canActivate: [NotAuthGuard],
+    canLoad: [NotAuthGuard],
+    canActivate: [NotAuthGuard],
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
   },
   {
     path: '',
     component: LayoutComponent,
-    // canLoad: [AuthGuard],
-    // canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: AppRoutes.Home,

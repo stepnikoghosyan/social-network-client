@@ -11,6 +11,9 @@ import { AppComponent } from './app.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
+// interceptors
+import { interceptors } from './interceptors';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +26,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [interceptors],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
