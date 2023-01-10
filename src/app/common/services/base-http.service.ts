@@ -11,6 +11,7 @@ import { QueryParams } from '@common/models/query-params.model';
 
 // helpers
 import { anyToHttpParams } from '@common/utils/any-to-http-params.helper';
+import { PaginationQueryParams } from '@common/models/pagination-query-params.model';
 
 export abstract class BaseHttpService<T> {
 
@@ -25,7 +26,7 @@ export abstract class BaseHttpService<T> {
     });
   }
 
-  protected getByPagination<T>(url: string, params?: QueryParams): Observable<PaginationResponse<T>> {
+  protected getByPagination<T>(url: string, params?: PaginationQueryParams): Observable<PaginationResponse<T>> {
     if (!params) {
       params = {
         page: 1,

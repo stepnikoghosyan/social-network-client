@@ -1,0 +1,17 @@
+.user-row {
+  padding: 8px;
+
+  .name-container {
+    color: #000;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    .name {
+      margin-left: 24px;
+      font-size: 18px;
+    }
+  }
+}

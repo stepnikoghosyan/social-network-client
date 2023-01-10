@@ -1,0 +1,11 @@
+<section *ngIf="friendsList">
+  <app-search [value]="search" (onSearch)="onSearch($event)"></app-search>
+
+  <ng-container *ngIf="!isLoadingUsers">
+    <app-user-row *ngFor="let user of usersList" [user]="user" [friendshipStatus]="getFriendshipStats(user)"></app-user-row>
+  </ng-container>
+
+  <div *ngIf="isLoadingUsers" class="flex justify-center align-center">
+    <mat-spinner></mat-spinner>
+  </div>
+</section>

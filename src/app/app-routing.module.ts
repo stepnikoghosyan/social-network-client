@@ -35,7 +35,11 @@ const routes: Routes = [
     children: [
       {
         path: AppRoutes.Home,
-        loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent),
+        loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent),
+      },
+      {
+        path: AppRoutes.Users,
+        loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule),
       },
       {
         path: AppRoutes.NotFound,

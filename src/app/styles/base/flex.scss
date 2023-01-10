@@ -38,6 +38,10 @@
   flex-wrap: wrap;
 }
 
+.dir-row {
+  flex-direction: row !important;
+}
+
 .dir-col {
   flex-direction: column;
 }

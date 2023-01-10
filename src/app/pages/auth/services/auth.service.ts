@@ -6,7 +6,7 @@ import { Observable, switchMap, tap } from 'rxjs';
 // services
 import { BaseHttpService } from '@common/services/base-http.service';
 import { StorageService } from '@common/services/storage.service';
-import { UsersHttpService } from '@common/services/users.service';
+import { UsersHttpService } from '../../users/services/users.service';
 
 // dto
 // import { ResetPasswordDto } from '../models/dto/reset-password.dto';

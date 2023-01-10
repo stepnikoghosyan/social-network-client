@@ -1,0 +1,24 @@
+<article *ngIf="!!userData" class="user-row flex align-center justify-between">
+  <a [routerLink]="['/profile', userData.id]" class="name-container flex align-center">
+    <app-lazy-image mat-card-avatar [src]="userData.profilePictureUrl" rounded [size]="60"></app-lazy-image>
+    <span class="name">{{ userData.fullName }}</span>
+  </a>
+
+  <div>
+    <button
+      (click)="addFriend(userData.id)"
+      [disabled]="isLoading || isBtnDisabled"
+      mat-flat-button color="primary"
+    >
+      <mat-icon *ngIf="isLoading">
+        <mat-progress-spinner
+          color="primary"
+          mode="indeterminate"
+          diameter="15">
+        </mat-progress-spinner>
+      </mat-icon>
+
+      {{ btnLabel }}
+    </button>
+  </div>
+</article>
