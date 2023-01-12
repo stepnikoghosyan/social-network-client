@@ -42,6 +42,10 @@ const routes: Routes = [
         loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule),
       },
       {
+        path: AppRoutes.Messanger,
+        loadChildren: () => import('./pages/messanger/messanger.module').then(m => m.MessangerModule),
+      },
+      {
         path: AppRoutes.NotFound,
         component: NotFoundComponent,
       },

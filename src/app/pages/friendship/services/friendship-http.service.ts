@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 // services
 import { BaseHttpService } from '@common/services/base-http.service';
@@ -9,24 +10,38 @@ import { BaseHttpService } from '@common/services/base-http.service';
 import { ManageFriendshipDto } from '../dto/manage-friendship.dto';
 
 // models
-import { Friend } from '../models/friend.model';
+import { Friendship } from '../models/friend.model';
 import { PaginationQueryParams } from '@common/models/pagination-query-params.model';
 import { PaginationResponse } from '@common/models/pagination-response.model';
 
+// utils
+import { normalizeUserResponse } from '../../users/services/users.service';
+
 @Injectable({ providedIn: 'root' })
-export class FriendshipHttpService extends BaseHttpService<Friend> {
+export class FriendshipHttpService extends BaseHttpService<Friendship> {
   private readonly URL = 'friends';
 
   constructor(httpClient: HttpClient) {
     super(httpClient);
   }
 
-  public getPendingFriendRequests(queryParams: PaginationQueryParams): Observable<PaginationResponse<Friend>> {
-    return this.getByPagination<Friend>(`${this.URL}/pending-friend-requests`, queryParams);
+  public getPendingFriendRequests(queryParams: PaginationQueryParams): Observable<PaginationResponse<Friendship>> {
+    return this.getByPagination<Friendship>(`${this.URL}/pending-friend-requests`, queryParams);
   }
 
-  public getFriendsList(queryParams: PaginationQueryParams): Observable<PaginationResponse<Friend>> {
-    return this.getByPagination<Friend>(`${this.URL}/friends-list`, queryParams);
+  // TODO: remove user normalizer from here
+  public getFriendsList(queryParams: PaginationQueryParams): Observable<PaginationResponse<Friendship>> {
+    return this.getByPagination<Friendship>(`${this.URL}/friends-list`, queryParams)
+      .pipe(
+        map((res) => ({
+          count: res.count,
+          results: res.results.map((item) => ({
+            ...item,
+            friend: normalizeUserResponse(item.friend),
+            lastActionUser: normalizeUserResponse(item.lastActionUser),
+          })),
+        })),
+      );
   }
 
   public sendFriendRequest(payload: ManageFriendshipDto): Observable<void> {

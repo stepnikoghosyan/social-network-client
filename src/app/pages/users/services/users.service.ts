@@ -61,7 +61,7 @@ export class UsersHttpService extends BaseHttpService<User> {
   }
 }
 
-function normalizeUserResponse(user: User): User {
+export function normalizeUserResponse(user: User): User {
   return {
     ...user,
     fullName: `${ user.firstName } ${ user.lastName }`,

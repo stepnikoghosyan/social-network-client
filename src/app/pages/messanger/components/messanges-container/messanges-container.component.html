@@ -1,0 +1,36 @@
+<section class="messages-container">
+  <header class="header flex justify-center align-center">
+    <p class="text-center m-0">{{ selectedRoom?.name }}</p>
+  </header>
+
+  <div class="content">
+    <!--    <app-progress-bar *ngIf="loaders.isGettingComments"></app-progress-bar>-->
+
+    <!-- Messages list -->
+    <div *ngFor="let message of messagesList$ | async">
+      <app-message [message]="message" [currentUserId]="currentUserId"></app-message>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <!--    Your message-->
+    <form style="width: 100%">
+      <div class="flex align-center">
+        <textarea [formControl]="ctrl"
+                  autoResizeTextarea [realtime]="true" [maxHeight]="100"
+                  class="message-input"
+                  placeholder="Type message..."
+                  rows="1">
+            </textarea>
+
+        <div class="flex">
+          <button (click)="sendMessage()" mat-icon-button type="button">
+            <mat-icon style="color: #0C6BFF">send</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <!--      <app-spinner *ngIf="loaders.isAddingComment" [centerInRelativeParent]="true"></app-spinner>-->
+    </form>
+  </footer>
+</section>

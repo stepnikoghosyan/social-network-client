@@ -3,12 +3,12 @@ import { finalize, Subject, takeUntil } from 'rxjs';
 
 // services
 import { UsersHttpService } from './services/users.service';
-import { FriendshipHttpService } from '../../modules/friendship/services/friendship.service';
+import { FriendshipHttpService } from '../friendship/services/friendship-http.service';
 
 // models
-import { Friend } from '../../modules/friendship/models/friend.model';
+import { Friendship } from '../friendship/models/friend.model';
 import { User } from './models/user.model';
-import { FriendshipStatus } from '../../modules/friendship/models/friend-status.model';
+import { FriendshipStatus } from '../friendship/models/friend-status.model';
 
 @Component({
   templateUrl: './users.component.html',
@@ -17,7 +17,7 @@ import { FriendshipStatus } from '../../modules/friendship/models/friend-status.
 })
 export class UsersComponent implements OnInit, OnDestroy {
   public usersList: User[] = [];
-  public friendsList?: Friend[];
+  public friendsList?: Friendship[];
 
   public isLoadingUsers = true;
 
@@ -67,13 +67,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   public getFriendshipStats(targetUser: User): FriendshipStatus | null {
-    const currentUser = this.usersService.currentUserData!;
-
-    const friendship = this.friendsList!.find((friendship) =>
-      (friendship.user.id === currentUser.id && friendship.friend.id === targetUser.id) ||
-      (friendship.friend.id === currentUser.id && friendship.user.id === targetUser.id)
-    );
-
+    const friendship = this.friendsList!.find((friendship) => friendship.friend.id === targetUser.id);
     return friendship?.friendshipStatus || null;
   }
 

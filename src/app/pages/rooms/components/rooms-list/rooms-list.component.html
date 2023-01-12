@@ -1,0 +1,26 @@
+<div class="rooms-list-container">
+  <h1>Chats</h1>
+
+  <app-search [value]="search" (onSearch)="onSearch($event)"></app-search>
+
+  <ng-container *ngIf="roomsList; else loadingTemplate">
+    <section>
+      <article *ngFor="let room of roomsList"
+               (click)="onRoomSelect(room)"
+               [ngClass]="{ active: selectedRoom?.id === room.id }"
+               class="room-row flex align-center justify-between">
+        <div class="name-container flex dir-col">
+<!--          <app-lazy-image [src]="room.friend.profilePictureUrl" rounded [size]="30"></app-lazy-image>-->
+          <span class="name">{{ room.name }}</span>
+          <span class="room-last-message">{{ room.lastMessage?.message }}</span>
+        </div>
+      </article>
+    </section>
+  </ng-container>
+
+  <ng-template #loadingTemplate>
+    <div class="flex justify-center align-center">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+</div>

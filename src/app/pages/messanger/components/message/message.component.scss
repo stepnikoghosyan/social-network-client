@@ -1,0 +1,27 @@
+.message {
+  .your-message-styles {
+    textarea {
+      color: #fff;
+      background-color: #0C6BFF;
+    }
+  }
+
+  .friend-message-styles {
+    textarea {
+      margin-left: 10px;
+      color: #000;
+      background-color: #DCE0E4;
+    }
+  }
+
+  .message-text {
+    border: none;
+    border-radius: 16px;
+    padding: 4px 8px;
+    resize: none;
+
+    &:hover {
+      cursor: text;
+    }
+  }
+}

@@ -11,5 +11,6 @@ export enum AppRoutes {
   // UpdatePost = 'edit',
   // Profile = 'profile',
   Users = 'users',
+  Messanger = 'messanger',
   NotFound = 'not-found',
 }

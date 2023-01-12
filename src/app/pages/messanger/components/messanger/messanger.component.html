@@ -1,0 +1,5 @@
+<div class="messanger-container flex">
+  <app-rooms-list class="rooms-list" (roomSelected)="handleRoomSelect($event)"></app-rooms-list>
+  <mat-divider [vertical]="true"></mat-divider>
+  <app-messanges-container [room]="selectedRoom" class="messages-list"></app-messanges-container>
+</div>

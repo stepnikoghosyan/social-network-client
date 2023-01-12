@@ -1,0 +1,32 @@
+<div *ngIf="message"
+     class="message flex align-center"
+     [ngClass]="{
+       'justify-start': message.author.id !== currentUserId,
+       'justify-end': message.author.id === currentUserId
+     }"
+>
+
+  <!-- TODO: show image only for last message -->
+  <app-lazy-image
+    *ngIf="message.author.id !== currentUserId"
+    [src]="message.author.profilePictureUrl"
+    [size]="28"
+    [matTooltip]="message.author.fullName"
+    [matTooltipShowDelay]="300"
+    defaultImageSrc="/assets/img/avatar-placeholder.png">
+  </app-lazy-image>
+
+  <div class="flex align-center"
+       [ngClass]="{
+         'your-message-styles': message.author.id === currentUserId,
+         'friend-message-styles': message.author.id !== currentUserId
+       }"
+       [matTooltip]="(message.createdAt | date) || ''"
+       [matTooltipShowDelay]="300"
+  >
+      <textarea autoResizeTextarea [calculateWidth]="true"
+                class="message-text"
+                rows="1"
+                disabled>{{ message.message }}</textarea>
+  </div>
+</div>

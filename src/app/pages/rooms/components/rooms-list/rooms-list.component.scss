@@ -1,0 +1,32 @@
+// TODO: these are duplicated styles from user-row.component.scss
+.rooms-list-container {
+  padding-right: 4px;
+
+  .room-row {
+    padding: 8px;
+    border-radius: 8px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #efefef;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .name-container {
+      color: #000;
+      text-decoration: none;
+
+      .name {
+        font-size: 18px;
+      }
+
+      .room-last-message {
+        color: #8e8e8e;
+      }
+    }
+
+    &.active {
+      background-color: #efefef;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+// TODO: these are duplicated styles from user-row.component.scss
+.user-row {
+  padding: 8px;
+
+  .name-container {
+    color: #000;
+    text-decoration: none;
+
+    .name {
+      margin-left: 24px;
+      font-size: 18px;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #efefef;
+    transition: background-color 0.2s ease-in-out;
+  }
+}

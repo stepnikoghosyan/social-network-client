@@ -2,14 +2,14 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy
 import { finalize, Subscription } from 'rxjs';
 
 // services
-import { FriendshipHttpService } from '../../../../modules/friendship/services/friendship.service';
+import { FriendshipHttpService } from '../../../friendship/services/friendship-http.service';
 
 // dto
-import { ManageFriendshipDto } from '../../../../modules/friendship/dto/manage-friendship.dto';
+import { ManageFriendshipDto } from '../../../friendship/dto/manage-friendship.dto';
 
 // models
 import { User } from '../../models/user.model';
-import { FriendshipStatus } from '../../../../modules/friendship/models/friend-status.model';
+import { FriendshipStatus } from '../../../friendship/models/friend-status.model';
 
 @Component({
   selector: 'app-user-row',
